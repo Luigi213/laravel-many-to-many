@@ -11,14 +11,14 @@
                         @endforeach                        
                     </ul>
                 @endif
-                <form method="POST" action="{{route('admin.types.update', $type->name)}}">
+                <form method="POST" action="{{route('admin.technologies.update', $technology->name_tech)}}">
                     @csrf 
 
                     @method('PUT')
                     <div class="form-group my-2">
-                        <label class="fs-2 fw-semibold" for="nome">Titolo</label>
-                        <input type="text" class="form-control" name="name" id="nome" value="{{old('name') ?? $type->name}}" placeholder="Inserire Titolo">
-                        @error('name')
+                        <label class="fs-2 fw-semibold" for="nome">Tech</label>
+                        <input type="text" class="form-control" name="name_tech" id="nome" value="{{old('name_tech') ?? $technology->name_tech}}" placeholder="Inserire Titolo">
+                        @error('name_tech')
                             <div class="mt-2 alert alert-danger">
                                 {{ $message }}
                             </div>

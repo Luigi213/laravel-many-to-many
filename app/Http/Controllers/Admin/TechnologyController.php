@@ -28,7 +28,7 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.technologies.create');
     }
 
     /**
@@ -39,7 +39,15 @@ class TechnologyController extends Controller
      */
     public function store(StoreTechnologyRequest $request)
     {
-        //
+        $data = $request->validated();
+        
+        $newTechnology = new Technology();
+
+        $newTechnology->fill($data);
+
+        $newTechnology->save();
+
+        return redirect()->route('admin.technologies.index')->with('message', 'Nuovo progetto creato');
     }
 
     /**
@@ -50,7 +58,7 @@ class TechnologyController extends Controller
      */
     public function show(Technology $technology)
     {
-        //
+        return view('admin.technologies.show', compact('technology'));
     }
 
     /**
@@ -61,7 +69,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        return view('admin.technologies.edit', compact('technology'));
     }
 
     /**
@@ -73,7 +81,13 @@ class TechnologyController extends Controller
      */
     public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
-        //
+        $data = $request->validated();
+        
+        $technology->fill($data);
+
+        $technology->update();
+
+        return redirect()->route('admin.technologies.index')->with('message', 'Modidicato con successo');
     }
 
     /**
@@ -84,6 +98,8 @@ class TechnologyController extends Controller
      */
     public function destroy(Technology $technology)
     {
-        //
+        $technology->delete();
+
+        return redirect()->route('admin.technologies.index')->with('message', 'Cancellazione con successo');
     }
 }

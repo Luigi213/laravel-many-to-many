@@ -4,7 +4,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 mb-3">
-                <a class="btn btn-primary" href="">Add project</a>
+                <a class="btn btn-primary" href="{{route('admin.technologies.create')}}">Add technology</a>
             </div>
             <div class="col-12">
                 @if (session('message'))
@@ -26,19 +26,19 @@
                             <th scope="row">{{ $technology->id }}</th>
                             <td>{{ $technology->name_tech }}</td>
                             <td>
-                                {{-- <a class="btn-sm btn btn-primary" href="{{route('admin.projects.show', $project->titolo)}}"><i class="fas fa-eye"></i></a>
-                                <a class="btn-sm btn btn-warning" href="{{route('admin.projects.edit', $project->titolo)}}"><i class="fas fa-edit"></i></a>
-                                <form class="d-inline" action="{{route('admin.projects.destroy', $project->titolo)}}" method="POST">
+                                <a class="btn-sm btn btn-primary" href="{{route('admin.technologies.show', $technology->name_tech)}}"><i class="fas fa-eye"></i></a>
+                                <a class="btn-sm btn btn-warning" href="{{route('admin.technologies.edit', $technology->name_tech)}}"><i class="fas fa-edit"></i></a>
+                                <form class="d-inline" action="{{route('admin.technologies.destroy', $technology->name_tech)}}" method="POST">
                                     @csrf
                                     
                                     @method('DELETE')
-                                    <button type="submit" class="btn-sm btn btn-danger confirm-delete-button" data-title="{{ $project->titolo }}"><i class="fas fa-trash"></i></button>
-                                </form> --}}
+                                    <button type="submit" class="btn-sm btn btn-danger confirm-delete-button" data-title="{{ $technology->name_tech }}"><i class="fas fa-trash"></i></button>
+                                </form>
                             </td>
                         </tr>   
                         @empty
                         <tr>
-                            {{-- <td>Aggiungi qualcosa <a href="{{route('admin.projects.create')}}">QUI</a></td>     --}}
+                            <td>Aggiungi qualcosa <a href="{{route('admin.technologies.create')}}">QUI</a></td>    
                         </tr>              
                         @endforelse
                     </tbody>

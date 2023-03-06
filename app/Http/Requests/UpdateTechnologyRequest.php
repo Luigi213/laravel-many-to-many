@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateTechnologyRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class UpdateTechnologyRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,21 @@ class UpdateTechnologyRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name_tech' => ['required', Rule::unique('technologies')->ignore($this->post),'max:50']
+        ];
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     */
+    public function messages()
+    {
+        return [
+            'name_tech.required' => 'Tech obbligatorio',
+            'name_tech.unique' => 'Tech già in uso',
+            'name_tech.max' => 'Carattere massimo :max',
         ];
     }
 }

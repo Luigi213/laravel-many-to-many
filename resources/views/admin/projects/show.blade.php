@@ -10,6 +10,14 @@
                     <p>{{ $project->descrizione}}</p>
                     <h5>Tipo</h5>
                     <p>{{ $project->type ? $project->type->name : 'Nessuna tipologia' }}</p>
+                    <h5>Tech</h5>
+                    <ul class="list-unstyled">
+                        @forelse ($project->technologies as $technology)
+                        <li>{{ $technology->name_tech }}</li>
+                        @empty
+                        <p>Nessun contenuto</p>
+                        @endforelse
+                    </ul>
                 </div>
             </div>
         </div>

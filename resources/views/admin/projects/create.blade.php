@@ -33,6 +33,16 @@
                         </select>
                     </div>
                     <div class="form-group my-2">
+                        @foreach ($technologies as $technology)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="{{ $technology->id }}" name='technologies[]'>
+                            <label class="form-check-label">
+                                {{ $technology->name_tech }}
+                            </label>
+                        </div>                        
+                        @endforeach
+                    </div>
+                    <div class="form-group my-2">
                         <label class="fs-2 fw-semibold" for="description">Descrizione</label>
                         <textarea type="password" class="form-control" name="descrizione" id="description" placeholder="Inserire Descrizione"></textarea>
                         @error('descrizione')

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController as PageController;
 use App\Http\Controllers\Admin\ProjectController as ProjectController;
 use App\Http\Controllers\Admin\TypeController as TypeController;
+use App\Http\Controllers\Admin\TechnologyController as TechnologyController;
 
 
 /*
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'verified'])->name('admin.')->prefix('admin')->group(
     Route::get('/', [PageController::class, 'index'])->name('dashboard');
     Route::resource('/projects', ProjectController::class)->parameters(['projects' => 'project:titolo']);
     Route::resource('/types', TypeController::class)->parameters(['types' => 'type:name']);
+    Route::resource('/technologies', TechnologyController::class)->parameters(['technologies' => 'technology:name_tech']);
 });
 
 Route::middleware('auth')->group(function () {

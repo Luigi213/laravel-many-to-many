@@ -34,6 +34,25 @@
                         </select>
                     </div>
                     <div class="form-group my-2">
+                        @foreach ($technologies as $technology)
+                        <div class="form-check @error('technologies')
+                            is-invalid
+                        @enderror">
+                            @if ($errors->any())                    
+                            <input class="form-check-input" type="checkbox" value="{{ $technology->id }}" name='technologies[]' {{ in_array($technology->id, old('technologies', [])) ? 'checked' : '' }}>
+                            <label class="form-check-label">
+                                {{ $technology->name_tech }}
+                            </label>
+                            @else
+                            <input class="form-check-input" type="checkbox" value="{{ $technology->id }}" name='technologies[]' {{ $project->technologies->contains($technology) ? 'checked' : '' }}>
+                            <label class="form-check-label">
+                                {{ $technology->name_tech }}
+                            </label>
+                            @endif
+                        </div>                        
+                        @endforeach
+                    </div>
+                    <div class="form-group my-2">
                         <label class="fs-2 fw-semibold" for="description">Descrizione</label>
                         <textarea type="password" class="form-control" name="descrizione" id="description" value="{!!nl2br( old('descrizione') ?? $project->descrizione )!!}" placeholder="Inserire Descrizione">{{old('descrizione') ?? $project->descrizione}}</textarea>
                         @error('descrizione')

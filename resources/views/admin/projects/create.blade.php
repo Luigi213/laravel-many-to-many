@@ -34,7 +34,9 @@
                     </div>
                     <div class="form-group my-2">
                         @foreach ($technologies as $technology)
-                        <div class="form-check">
+                        <div class="form-check @error('technologies')
+                            is-invalid
+                        @enderror">
                             <input class="form-check-input" type="checkbox" value="{{ $technology->id }}" name='technologies[]'>
                             <label class="form-check-label">
                                 {{ $technology->name_tech }}
